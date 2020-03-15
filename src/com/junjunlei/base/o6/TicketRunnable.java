@@ -16,6 +16,9 @@ public class TicketRunnable implements Runnable {
     public void run() {
         while (true) {
             //加锁 解决重票 错票问题  操作共享数据的代码即为待同步代码
+            //要保证锁的唯一  继承Thread慎用this当锁
+            //synchronized (TicketRunnable.class) { 类也是对象
+            //synchronized (this) {
             synchronized (ob) {
                 if (ticket > 0) {
                     System.out.println(Thread.currentThread().getName() + ":" + "卖票票号为：" + ticket);
