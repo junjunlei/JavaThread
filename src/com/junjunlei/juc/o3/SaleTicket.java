@@ -16,31 +16,13 @@ public class SaleTicket {
     public static void main(String[] args) {
         Ticket ticket = new Ticket();
         new Thread(() -> {
-            while (true) {
-                if (ticket.getNumber() > 0) {
-                    ticket.saleTicket();
-                } else {
-                    break;
-                }
-            }
+            ticket.saleTicket();
         }, "A").start();
         new Thread(() -> {
-            while (true) {
-                if (ticket.getNumber() > 0) {
-                    ticket.saleTicket();
-                } else {
-                    break;
-                }
-            }
+            ticket.saleTicket();
         }, "B").start();
         new Thread(() -> {
-            while (true) {
-                if (ticket.getNumber() > 0) {
-                    ticket.saleTicket();
-                } else {
-                    break;
-                }
-            }
+            ticket.saleTicket();
         }, "C").start();
     }
 }
@@ -53,17 +35,17 @@ class Ticket {
         lock.lock();
 
         try {
-            if (number > 0) {
-                System.out.println(Thread.currentThread().getName() + "卖出第" + (number--) + "还剩下" + number);
+            while (true) {
+                if (number > 0) {
+                    System.out.println(Thread.currentThread().getName() + "卖出第" + (number--) + "还剩下" + number);
+                } else {
+                    break;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
         }
-    }
-
-    public int getNumber() {
-        return number;
     }
 }
