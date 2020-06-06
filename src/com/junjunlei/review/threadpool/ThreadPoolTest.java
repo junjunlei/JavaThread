@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 
 /**
  * 线程池工具类 Executors（阿里巴巴开发手册不建议使用） 艾克赛克油特
+ *   建议开发中自己新建  new ThreadPoolExecutor(),并设置参数
  *
  * @author junjun.lei
  * @create 2020-06-03 0:30
@@ -19,7 +20,6 @@ public class ThreadPoolTest {
 
         //根据需要创建新线程
         ExecutorService threadPool = Executors.newCachedThreadPool();
-
         /**
          * Executors工具类底层还是使用的 new ThreadPoolExecutor()创建的线程
          *    1.newFixedThreadPool 方法 corePoolSize和 maximumPoolSize设置的相同，也就是传入的固定参数，
